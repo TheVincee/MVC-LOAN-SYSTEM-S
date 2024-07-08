@@ -1,0 +1,95 @@
+@model URSAL_VINCENEIL.Entities.ClientsInfoTb;
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+<form asp-action="Create" method="post">
+
+    <div class="row g-3">
+   <div class="col">
+        <label asp-for="UserType"></label>
+          <input asp-for="UserType" class="form-control">
+        <span asp-validation-for="UserType" class="text-danger"></span>
+   </div>
+   <div class="col">
+        <label asp-for="FullName"></label>
+        <input asp-for="FullName" class="form-control">
+         <span asp-validation-for="FullName" class="text-danger"></span>
+   </div>
+</div>
+
+<div class="row g-3">
+   <div class="col">
+       <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control">
+   </div>
+   <div class="col">
+    <label asp-for="Address"></label>
+    <input asp-for="Address" class="form-control">
+   </div>
+</div>
+
+<div class="row g-3">
+   <div class="col">
+  <label asp-for="ZipCode"></label>
+        <input asp-for="ZipCode" class="form-control">
+   </div>
+   <div class="col">
+       <label asp-for="Birthday"></label>
+        <input asp-for="Birthday" id="birthdayInput" type="date" class="form-control">
+   </div>
+</div>
+
+<div class="row g-3">
+   <div class="col">
+        <label asp-for="Age"></label>
+        <input asp-for="Age" id="ageInput" class="form-control" readonly>
+   </div>
+   <div class="col">
+        <label asp-for="NameOfFather"></label>
+        <input asp-for="NameOfFather" class="form-control">
+   </div>
+</div>
+
+<div class="row g-3">
+   <div class="col">
+      <label asp-for="NameOfMother"></label>
+        <input asp-for="NameOfMother" class="form-control">
+   </div>
+   <div class="col">
+        <label asp-for="CivilStatus"></label>
+        <input asp-for="CivilStatus" class="form-control">
+   </div>
+</div>
+
+    <div class="form-group">
+        <label asp-for="Religion"></label>
+        <input asp-for="Religion" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Occupation"></label>
+        <input asp-for="Occupation" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+@section Scripts {
+    <script>
+    
+        function calculateAge() {
+            var currentDate = new Date();
+            var birthday = new Date(document.getElementById('birthdayInput').value);
+            var age = currentDate.getFullYear() - birthday.getFullYear();
+            if (currentDate.getMonth() < birthday.getMonth() || (currentDate.getMonth() == birthday.getMonth() && currentDate.getDate() < birthday.getDate())) {
+                age--;
+            }
+            document.getElementById('ageInput').value = age;
+        }
+
+      
+        document.getElementById('birthdayInput').addEventListener('change', calculateAge);
+    </script>
+}
